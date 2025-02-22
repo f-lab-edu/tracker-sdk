@@ -1,4 +1,3 @@
-import { getDevice } from '../utils/getDevice.ts';
 import { getTimeStamp } from '../utils/getTimeStamp.ts';
 import { sendToServer } from './api.ts';
 
@@ -10,26 +9,10 @@ export function startHeartBeat() {
     sendOnline();
   }, HEART_BEAT_TIME);
 
-  window.addEventListener('load', () => {
-    sendUserInfo();
-  });
-
   window.addEventListener('beforeunload', () => {
     clearInterval(heartBeatTimer);
     sendOffline();
   });
-}
-
-function sendUserInfo() {
-  const data = {
-    page: window.location.href,
-    userPrevPage: document.referrer,
-    userAccessTime: getTimeStamp(),
-    userDevice: getDevice(),
-    userLanguage: navigator.language,
-    event: 'pageLoad',
-  };
-  sendToServer(API_URL, data);
 }
 
 function sendOffline() {
