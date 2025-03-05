@@ -5,7 +5,6 @@ import {
   scrollEventBatch,
   scrollEventBatchArray,
 } from './batchEventArray.ts';
-
 export function addScrollEventToBatch() {
   window.addEventListener('scroll', (event) => {
     const scrollTop = document.documentElement.scrollTop;
