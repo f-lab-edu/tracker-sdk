@@ -1,4 +1,5 @@
 import { sendPageInfo, sendPageReferrer } from './pageInfo.ts';
+import { sendIsBounced, sendUserScrollDepth } from './userAction.ts';
 import { sendUserDevice } from './userDevice.ts';
 import { sendUserInfo } from './userInfo.ts';
 class Tracker {
@@ -24,14 +25,22 @@ class Tracker {
       sendUserDevice;
       sessionStorage.setItem('userDeviceSent', 'true');
     });
+    window.addEventListener('load', sendPageInfo);
+    window.addEventListener('popstate', sendPageInfo);
+    const originPushState = history.pushState;
+    history.pushState = function (...args) {
+      originPushState.call(this, ...args);
+      sendPageInfo();
+    };
     window.addEventListener('load', () => {
-      if (sessionStorage.getItem('userPageInfoSent')) {
+      if (sessionStorage.getItem('userPageReferrer')) {
         return;
       }
-      sendPageInfo;
-      sessionStorage.setItem('userPageInfoSent', 'true');
+      sendPageReferrer;
+      sessionStorage.setItem('userPageReferrer', 'true');
     });
-    window.addEventListener('load', sendPageReferrer);
+    window.addEventListener('beforeunload', sendIsBounced);
+    window.addEventListener('load', sendUserScrollDepth);
   }
 
   public getApiKey() {

@@ -1,13 +1,8 @@
-import { getTimeStamp } from '../utils/getTimeStamp.ts';
-import {
-  clickEventBatch,
-  clickEventBatchArray,
-  scrollEventBatch,
-  scrollEventBatchArray,
-} from './batchEventArray.ts';
+import { debounce } from '../utils/debounce.ts';
+import { sendToServer } from './api.ts';
 
-export function addScrollEventToBatch() {
-  window.addEventListener('scroll', (event) => {
+export function sendUserScrollDepth() {
+  const debounceScrollHandler = debounce(() => {
     const scrollTop = document.documentElement.scrollTop;
     const windowHeight = window.innerHeight;
     const fullHeight = document.documentElement.scrollHeight;
@@ -24,55 +19,19 @@ export function addScrollEventToBatch() {
     } else if (scrolledPercent > 75 && scrolledPercent <= 100) {
       recordScrolledPercent = 100;
     }
-    const data: scrollEventBatch = {
-      page: window.location.href,
-      recordScrolledPercent: recordScrolledPercent || 0,
-      timeStamp: getTimeStamp(),
-      event: 'scroll',
+    const data = {
+      url: window.location.href,
+      scrollDepth: recordScrolledPercent || 0,
     };
-    scrollEventBatchArray.push(data);
-  });
+    sendToServer('userAction/scrollDepth', data);
+  }, 500);
+  window.addEventListener('scroll', debounceScrollHandler);
 }
 
-export function addClickEventToBatch() {
-  window.addEventListener('click', (event) => {
-    if (event.target && event.target instanceof HTMLElement) {
-      const data: clickEventBatch = {
-        page: window.location.href,
-        clickTagName: event.target.tagName,
-        clickInnerText: event.target.innerText,
-        timeStamp: getTimeStamp(),
-        event: 'click',
-      };
-      clickEventBatchArray.push(data);
-    }
-  });
-}
-
-export function getIsInteractive() {
-  const interactionEvents = [
-    'click',
-    'scroll',
-    'keydown',
-    'touchstart',
-    'input',
-    'touchstart',
-    'focus',
-  ];
-  let isInterActive = false;
-  const handleInterActive = () => {
-    isInterActive = true;
+export function sendIsBounced() {
+  const data = {
+    url: window.location.href,
+    isBounced: true,
   };
-  interactionEvents.forEach((event) => {
-    window.addEventListener(event, handleInterActive);
-  });
-  const INTERACTION_TIMEOUT = 30000;
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      interactionEvents.forEach((event) => {
-        window.removeEventListener(event, handleInterActive);
-      });
-      resolve(isInterActive);
-    }, INTERACTION_TIMEOUT);
-  });
+  sendToServer('userAction/bounceRate', data);
 }
