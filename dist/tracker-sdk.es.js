@@ -1860,8 +1860,8 @@ class Zn {
         sessionStorage.getItem("userPageReferrer") ? null : In().then(
           () => sessionStorage.setItem("userPageReferrer", "true")
         )
-      ]);
-    }), $n(), window.addEventListener("DOMContentLoaded", ie), window.addEventListener("popstate", ie);
+      ]), $n();
+    }), window.addEventListener("DOMContentLoaded", ie), window.addEventListener("popstate", ie);
     const n = history.pushState.bind(history);
     history.pushState = (...r) => {
       n(...r), ie();

@@ -35,8 +35,9 @@ class Tracker {
               sessionStorage.setItem('userPageReferrer', 'true')
             ),
       ]);
+      startHeartbeat();
     });
-    startHeartbeat();
+
     window.addEventListener('DOMContentLoaded', sendPageInfo);
     window.addEventListener('popstate', sendPageInfo);
     const originPushState = history.pushState.bind(history);
