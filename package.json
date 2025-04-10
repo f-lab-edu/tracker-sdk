@@ -1,6 +1,6 @@
 {
   "name": "tracker-sdk-nemo",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "description": "트래픽 분석을 위한 SDK",
   "main": "dist/tracker-sdk.cjs.js",
   "module": "dist/tracker-sdk.es.js",
