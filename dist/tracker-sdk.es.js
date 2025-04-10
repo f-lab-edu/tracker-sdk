@@ -49,7 +49,7 @@ function H(e, t, { allOwnKeys: n = !1 } = {}) {
       c = o[r], t.call(null, e[c], c, e);
   }
 }
-function Ie(e, t) {
+function _e(e, t) {
   t = t.toLowerCase();
   const n = Object.keys(e);
   let r = n.length, s;
@@ -58,10 +58,10 @@ function Ie(e, t) {
       return s;
   return null;
 }
-const I = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : global, _e = (e) => !q(e) && e !== I;
+const _ = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : global, Be = (e) => !q(e) && e !== _;
 function ae() {
-  const { caseless: e } = _e(this) && this || {}, t = {}, n = (r, s) => {
-    const o = e && Ie(t, s) || s;
+  const { caseless: e } = Be(this) && this || {}, t = {}, n = (r, s) => {
+    const o = e && _e(t, s) || s;
     z(t[o]) && z(r) ? t[o] = ae(t[o], r) : z(r) ? t[o] = ae({}, r) : F(r) ? t[o] = r.slice() : t[o] = r;
   };
   for (let r = 0, s = arguments.length; r < s; r++)
@@ -115,14 +115,14 @@ const Et = (e, t, n, { allOwnKeys: r } = {}) => (H(t, (s, o) => {
   function(n, r, s) {
     return r.toUpperCase() + s;
   }
-), we = (({ hasOwnProperty: e }) => (t, n) => e.call(t, n))(Object.prototype), kt = x("RegExp"), Be = (e, t) => {
+), we = (({ hasOwnProperty: e }) => (t, n) => e.call(t, n))(Object.prototype), kt = x("RegExp"), Ie = (e, t) => {
   const n = Object.getOwnPropertyDescriptors(e), r = {};
   H(n, (s, o) => {
     let i;
     (i = t(s, o, e)) !== !1 && (r[o] = i || s);
   }), Object.defineProperties(e, r);
-}, It = (e) => {
-  Be(e, (t, n) => {
+}, _t = (e) => {
+  Ie(e, (t, n) => {
     if (C(e) && ["arguments", "caller", "callee"].indexOf(n) !== -1)
       return !1;
     const r = e[n];
@@ -136,14 +136,14 @@ const Et = (e, t, n, { allOwnKeys: r } = {}) => (H(t, (s, o) => {
       });
     }
   });
-}, _t = (e, t) => {
+}, Bt = (e, t) => {
   const n = {}, r = (s) => {
     s.forEach((o) => {
       n[o] = !0;
     });
   };
   return F(e) ? r(e) : r(String(e).split(t)), n;
-}, Bt = () => {
+}, It = () => {
 }, Ft = (e, t) => e != null && Number.isFinite(e = +e) ? e : t;
 function Dt(e) {
   return !!(e && C(e.append) && e[Symbol.toStringTag] === "FormData" && e[Symbol.iterator]);
@@ -165,14 +165,14 @@ const jt = (e) => {
     return r;
   };
   return n(e, 0);
-}, qt = x("AsyncFunction"), Ht = (e) => e && (Q(e) || C(e)) && C(e.then) && C(e.catch), Fe = ((e, t) => e ? setImmediate : t ? ((n, r) => (I.addEventListener("message", ({ source: s, data: o }) => {
-  s === I && o === n && r.length && r.shift()();
+}, qt = x("AsyncFunction"), Ht = (e) => e && (Q(e) || C(e)) && C(e.then) && C(e.catch), Fe = ((e, t) => e ? setImmediate : t ? ((n, r) => (_.addEventListener("message", ({ source: s, data: o }) => {
+  s === _ && o === n && r.length && r.shift()();
 }, !1), (s) => {
-  r.push(s), I.postMessage(n, "*");
+  r.push(s), _.postMessage(n, "*");
 }))(`axios@${Math.random()}`, []) : (n) => setTimeout(n))(
   typeof setImmediate == "function",
-  C(I.postMessage)
-), Mt = typeof queueMicrotask < "u" ? queueMicrotask.bind(I) : typeof process < "u" && process.nextTick || Fe, a = {
+  C(_.postMessage)
+), Mt = typeof queueMicrotask < "u" ? queueMicrotask.bind(_) : typeof process < "u" && process.nextTick || Fe, a = {
   isArray: F,
   isArrayBuffer: Ue,
   isBuffer: ot,
@@ -214,15 +214,15 @@ const jt = (e) => {
   hasOwnProperty: we,
   hasOwnProp: we,
   // an alias to avoid ESLint no-prototype-builtins detection
-  reduceDescriptors: Be,
-  freezeMethods: It,
-  toObjectSet: _t,
+  reduceDescriptors: Ie,
+  freezeMethods: _t,
+  toObjectSet: Bt,
   toCamelCase: Ut,
-  noop: Bt,
+  noop: It,
   toFiniteNumber: Ft,
-  findKey: Ie,
-  global: I,
-  isContextDefined: _e,
+  findKey: _e,
+  global: _,
+  isContextDefined: Be,
   isSpecCompliantForm: Dt,
   toJSONObject: jt,
   isAsyncFn: qt,
@@ -915,7 +915,7 @@ function Ke(e, t, n) {
   return e && r || n == !1 ? wn(e, t) : t;
 }
 const Ae = (e) => e instanceof T ? { ...e } : e;
-function B(e, t) {
+function I(e, t) {
   t = t || {};
   const n = {};
   function r(u, l, d, w) {
@@ -980,7 +980,7 @@ function B(e, t) {
   }), n;
 }
 const Ve = (e) => {
-  const t = B({}, e);
+  const t = I({}, e);
   let { data: n, withXSRFToken: r, xsrfHeaderName: s, xsrfCookieName: o, headers: i, auth: c } = t;
   t.headers = i = T.from(i), t.url = Me(Ke(t.baseURL, t.url, t.allowAbsoluteUrls), e.params, e.paramsSerializer), c && i.set(
     "Authorization",
@@ -1381,7 +1381,7 @@ const K = {
   assertOptions: Ln,
   validators: ee
 }, N = K.validators;
-let _ = class {
+let B = class {
   constructor(t) {
     this.defaults = t, this.interceptors = {
       request: new Se(),
@@ -1414,7 +1414,7 @@ let _ = class {
     }
   }
   _request(t, n) {
-    typeof t == "string" ? (n = n || {}, n.url = t) : n = t || {}, n = B(this.defaults, n);
+    typeof t == "string" ? (n = n || {}, n.url = t) : n = t || {}, n = I(this.defaults, n);
     const { transitional: r, paramsSerializer: s, headers: o } = n;
     r !== void 0 && K.assertOptions(r, {
       silentJSONParsing: N.transitional(N.boolean),
@@ -1476,14 +1476,14 @@ let _ = class {
     return l;
   }
   getUri(t) {
-    t = B(this.defaults, t);
+    t = I(this.defaults, t);
     const n = Ke(t.baseURL, t.url, t.allowAbsoluteUrls);
     return Me(n, t.params, t.paramsSerializer);
   }
 };
 a.forEach(["delete", "get", "head", "options"], function(t) {
-  _.prototype[t] = function(n, r) {
-    return this.request(B(r || {}, {
+  B.prototype[t] = function(n, r) {
+    return this.request(I(r || {}, {
       method: t,
       url: n,
       data: (r || {}).data
@@ -1493,7 +1493,7 @@ a.forEach(["delete", "get", "head", "options"], function(t) {
 a.forEach(["post", "put", "patch"], function(t) {
   function n(r) {
     return function(o, i, c) {
-      return this.request(B(c || {}, {
+      return this.request(I(c || {}, {
         method: t,
         headers: r ? {
           "Content-Type": "multipart/form-data"
@@ -1503,7 +1503,7 @@ a.forEach(["post", "put", "patch"], function(t) {
       }));
     };
   }
-  _.prototype[t] = n(), _.prototype[t + "Form"] = n(!0);
+  B.prototype[t] = n(), B.prototype[t + "Form"] = n(!0);
 });
 let Un = class Ze {
   constructor(t) {
@@ -1583,7 +1583,7 @@ function kn(e) {
     return e.apply(null, n);
   };
 }
-function In(e) {
+function _n(e) {
   return a.isObject(e) && e.isAxiosError === !0;
 }
 const de = {
@@ -1655,13 +1655,13 @@ Object.entries(de).forEach(([e, t]) => {
   de[t] = e;
 });
 function Ye(e) {
-  const t = new _(e), n = Le(_.prototype.request, t);
-  return a.extend(n, _.prototype, t, { allOwnKeys: !0 }), a.extend(n, t, null, { allOwnKeys: !0 }), n.create = function(s) {
-    return Ye(B(e, s));
+  const t = new B(e), n = Le(B.prototype.request, t);
+  return a.extend(n, B.prototype, t, { allOwnKeys: !0 }), a.extend(n, t, null, { allOwnKeys: !0 }), n.create = function(s) {
+    return Ye(I(e, s));
   }, n;
 }
 const g = Ye(M);
-g.Axios = _;
+g.Axios = B;
 g.CanceledError = D;
 g.CancelToken = Un;
 g.isCancel = ze;
@@ -1673,30 +1673,30 @@ g.all = function(t) {
   return Promise.all(t);
 };
 g.spread = kn;
-g.isAxiosError = In;
-g.mergeConfig = B;
+g.isAxiosError = _n;
+g.mergeConfig = I;
 g.AxiosHeaders = T;
 g.formToJSON = (e) => $e(a.isHTMLForm(e) ? new FormData(e) : e);
 g.getAdapter = Ge.getAdapter;
 g.HttpStatusCode = de;
 g.default = g;
 const {
-  Axios: er,
-  AxiosError: tr,
-  CanceledError: nr,
-  isCancel: rr,
-  CancelToken: sr,
-  VERSION: or,
-  all: ir,
-  Cancel: ar,
-  isAxiosError: cr,
-  spread: ur,
-  toFormData: lr,
-  AxiosHeaders: fr,
-  HttpStatusCode: dr,
-  formToJSON: pr,
-  getAdapter: hr,
-  mergeConfig: mr
+  Axios: nr,
+  AxiosError: rr,
+  CanceledError: sr,
+  isCancel: or,
+  CancelToken: ir,
+  VERSION: ar,
+  all: cr,
+  Cancel: ur,
+  isAxiosError: lr,
+  spread: fr,
+  toFormData: dr,
+  AxiosHeaders: pr,
+  HttpStatusCode: hr,
+  formToJSON: mr,
+  getAdapter: yr,
+  mergeConfig: wr
 } = g, te = "https://tracker-server.site";
 async function v(e, t) {
   try {
@@ -1715,11 +1715,11 @@ async function v(e, t) {
     throw console.error("api 요청 실패", n), n;
   }
 }
-function _n() {
+function Bn() {
   let e = localStorage.getItem("userId");
   return e || (e = crypto.randomUUID(), localStorage.setItem("userId", e)), e;
 }
-async function Bn() {
+async function In() {
   const e = document.referrer.trim();
   v("/trackerSdk/pageInfo/referrer", {
     referrer: e === "" ? "direct" : e
@@ -1794,48 +1794,54 @@ function Mn() {
     r
   ), sessionStorage.setItem("sendOffline", "true");
 }
-async function vn() {
+const vn = 3e4;
+function $n() {
+  setInterval(() => {
+    Hn();
+  }, vn);
+}
+async function zn() {
   const e = {
-    browser: Kn(),
-    isMobile: zn(),
-    os: $n(),
-    resolution: Jn()
+    browser: Wn(),
+    isMobile: Kn(),
+    os: Jn(),
+    resolution: Vn()
   };
   v("/trackerSdk/userDevice", e);
 }
-function $n() {
+function Jn() {
   const e = navigator.userAgent.toLowerCase(), t = navigator.platform.toLowerCase();
   return t.includes("iphone") || t.includes("ipad") || e.includes("iphone") || e.includes("ipad") ? "iOS" : t.includes("mac") ? "macOS" : e.includes("android") ? "Android" : t.includes("win") ? "Windows" : "Other";
 }
-function zn() {
+function Kn() {
   const e = navigator.userAgent.toLowerCase();
   return /android|iphone|ipad/.test(e);
 }
-function Jn() {
+function Vn() {
   return `${window.screen.width}x${window.screen.height}`;
 }
-function Kn() {
+function Wn() {
   const e = navigator.userAgent.toLowerCase();
   return e.includes("whale") ? "NaverWhale" : e.includes("edg") ? "Edge" : e.includes("chrome") ? "Chrome" : e.includes("safari") ? "Safari" : e.includes("firefox") ? "Firefox" : e.includes("trident") || e.includes("msie") ? "InternetExplorer" : "Other";
 }
-async function Vn() {
+async function Xn() {
   const t = {
-    country: await Wn(),
-    language: Xn()
+    country: await Gn(),
+    language: Qn()
   };
   v("/trackerSdk/userInfo", t);
 }
-async function Wn() {
+async function Gn() {
   try {
     return (await g.get("https://ipapi.co/json/")).data.country_name || "unknownCountry";
   } catch (e) {
     return console.error("country 찾기 오류", e), "unknownCountry";
   }
 }
-function Xn() {
+function Qn() {
   return (window.navigator.language || "unknownLanguage").split("-")[1];
 }
-class Gn {
+class Zn {
   constructor() {
     ne(this, "apiKey", null);
     ne(this, "userId", null);
@@ -1843,22 +1849,19 @@ class Gn {
   async init(t) {
     if (t.trim() === "")
       throw new Error("api key가 없습니다");
-    this.apiKey = t, this.userId = _n(), rt(async () => {
+    this.apiKey = t, this.userId = Bn(), rt(async () => {
       await Promise.all([
-        sessionStorage.getItem("userInfoSent") ? null : Vn().then(
+        sessionStorage.getItem("userInfoSent") ? null : Xn().then(
           () => sessionStorage.setItem("userInfoSent", "true")
         ),
-        sessionStorage.getItem("userDeviceSent") ? null : vn().then(
+        sessionStorage.getItem("userDeviceSent") ? null : zn().then(
           () => sessionStorage.setItem("userDeviceSent", "true")
         ),
-        sessionStorage.getItem("userPageReferrer") ? null : Bn().then(
+        sessionStorage.getItem("userPageReferrer") ? null : In().then(
           () => sessionStorage.setItem("userPageReferrer", "true")
-        ),
-        sessionStorage.getItem("sendOnline") ? null : Hn().then(
-          () => sessionStorage.setItem("sendOnline", "true")
         )
       ]);
-    }), window.addEventListener("DOMContentLoaded", ie), window.addEventListener("popstate", ie);
+    }), $n(), window.addEventListener("DOMContentLoaded", ie), window.addEventListener("popstate", ie);
     const n = history.pushState.bind(history);
     history.pushState = (...r) => {
       n(...r), ie();
@@ -1880,7 +1883,7 @@ class Gn {
     return this.userId;
   }
 }
-const U = new Gn();
+const U = new Zn();
 export {
   U as tracker
 };
