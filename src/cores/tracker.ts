@@ -2,7 +2,7 @@ import { isReload } from '../utils/isReload';
 import { runOnDOMContentReady } from '../utils/runOnDOMContentReady';
 import { createOrGetUserId } from './api';
 import { sendPageInfo, sendPageReferrer } from './pageInfo';
-import { debounceScrollHandler, sendIsBounced } from './userAction';
+import { sendIsBounced } from './userAction';
 import { sendOffline, startHeartbeat } from './userConnection';
 import { sendUserDevice } from './userDevice';
 import { sendUserInfo } from './userInfo';
@@ -57,12 +57,6 @@ class Tracker {
         sendOffline();
         sendIsBounced();
       }
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOMContentLoaded 이후 스크롤시점 성공');
-      window.addEventListener('scroll', debounceScrollHandler, {
-        passive: true,
-      });
     });
   }
 
