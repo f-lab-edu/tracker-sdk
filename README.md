@@ -20,9 +20,15 @@
 <p>
 ---
 
+## 아키텍처
+
+![architecture](https://github.com/user-attachments/assets/cf8a5133-9cd3-41d9-938c-a593ce8d0f4d)
+
+---
+
 ## 인증 및 데이터 흐름
 
-![auth_data](https://github.com/user-attachments/assets/1456bf4b-6f3d-4488-b378-61680a3de8aa)
+![auth_data](https://github.com/user-attachments/assets/711e4fda-d5ac-4805-ae73-540d764b4b3a)
 
 ---
 
