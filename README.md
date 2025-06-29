@@ -28,7 +28,7 @@
 
 ## 인증 및 데이터 흐름
 
-![auth_data](https://github.com/user-attachments/assets/711e4fda-d5ac-4805-ae73-540d764b4b3a)
+![auth_data](https://github.com/user-attachments/assets/4162c240-81cc-4e37-8230-5db1bd3fcbb3)
 
 ---
 
